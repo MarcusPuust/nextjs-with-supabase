@@ -35,7 +35,7 @@ export default async function TodoPage() {
     <div className="space-y-10 p-6 max-w-3xl mx-auto">
       <header className="space-y-2">
         <h1 className="text-3xl font-bold">TODO</h1>
-        <p className="text-gray-600">Server (SSR) üleval, Client (CSR) all.</p>
+        <p className="text-gray-600">Server üleval, Client all.</p>
       </header>
 
       {/* CREATE (server action) */}
