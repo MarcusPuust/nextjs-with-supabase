@@ -31,6 +31,23 @@ export default async function TodoPage() {
     revalidatePath("/todo");
   }
 
+  async function updateTitle(formData: FormData) {
+    "use server";
+    const supabase = await createClient();
+    const id = Number(formData.get("id"));
+    const title = String(formData.get("title") ?? "").trim();
+    if (!id || !title) return;
+
+    await supabase
+      .from("todos")
+      .update({ title })
+      .eq("id", id) // 🔒 always filter!
+      .select() // optional: fetch updated row
+      .single();
+
+    revalidatePath("/todo");
+  }
+
   return (
     <div className="space-y-10 p-6 max-w-3xl mx-auto">
       <header className="space-y-2">
@@ -70,7 +87,20 @@ export default async function TodoPage() {
               {todos?.map((t) => (
                 <tr key={t.id} className="border-t">
                   <td className="px-4 py-2">{t.id}</td>
-                  <td className="px-4 py-2">{t.title}</td>
+                  <td className="px-4 py-2">
+                    <form action={updateTitle} className="flex gap-2">
+                      <input
+                        name="title"
+                        defaultValue={t.title}
+                        className="min-w-[10rem] rounded border border-gray-300 px-2 py-1"
+                      />
+                      <input type="hidden" name="id" value={t.id} />
+                      <button className="rounded border px-2 py-1 hover:bg-gray-50">
+                        Save
+                      </button>
+                    </form>
+                  </td>
+
                   <td className="px-4 py-2">
                     {new Date(t.created_at).toLocaleString()}
                   </td>
