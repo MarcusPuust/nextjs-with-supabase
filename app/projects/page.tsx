@@ -68,14 +68,12 @@ export default async function ProjectsPage() {
     <section className="p-6 space-y-10">
       <header className="space-y-2">
         <h1 className="text-2xl font-semibold">Projects</h1>
-        <p className="text-sm opacity-70">Server & Client plokid ühel lehel</p>
+        <p className="text-sm opacity-70">Projektide esitamise lehekülg</p>
       </header>
 
       {/* --- SERVER CRUD --- */}
       <section className="space-y-4 border rounded-xl shadow-sm p-6">
-        <h2 className="text-xl font-semibold">
-          Server Component (server actions)
-        </h2>
+        <h2 className="text-xl font-semibold">Server</h2>
 
         {/* CREATE */}
         <form action={createProject} className="flex gap-2">
@@ -120,9 +118,7 @@ export default async function ProjectsPage() {
 
       {/* --- CLIENT CRUD --- */}
       <section className="space-y-4 border rounded-xl shadow-sm p-6">
-        <h2 className="text-xl font-semibold">
-          Client Component (fetch → /projects/api)
-        </h2>
+        <h2 className="text-xl font-semibold">Client</h2>
         <ClientProject />
       </section>
     </section>
