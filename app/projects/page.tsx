@@ -124,3 +124,6 @@ export default async function ProjectsPage() {
     </section>
   );
 }
+
+// --- only for tests ---
+export const __test__ = { createProject, updateProject, deleteProject };
